@@ -37,7 +37,7 @@ spec:
   selector:
     matchLabels:
       app: worker
-  replicas: 1
+  replicas: 2
   strategy:
     type: Recreate
   template:

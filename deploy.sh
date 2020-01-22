@@ -4,9 +4,11 @@ set -e
 ./gradlew bootJar
 
 eval $(minikube docker-env)
-docker build -t app .
+docker build -t app . --no-cache
 
+# see popular GitHub issue
 minikube ssh sudo ip link set docker0 promisc on
+
 kubectl config use-context minikube
 kubectl delete pod -l app=producer --force --grace-period=0
 kubectl delete pod -l app=worker --force --grace-period=0
